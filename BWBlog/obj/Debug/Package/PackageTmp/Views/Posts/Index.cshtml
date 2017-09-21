@@ -1,0 +1,87 @@
+﻿@model IEnumerable<BWBlog.Models.Post>
+
+@{
+    ViewBag.Title = "Blog";
+}
+
+<div class="row justify-content-center" id="blog-posts-list">
+    <div class="col-lg-7 col-md-10">
+        @foreach (var item in Model)
+        {
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row blog-post-index-image">
+                        @if (item.MediaUrl != null)
+                        {
+                            <div class="col-sm-6">
+                                <img class="img-fluid rounded" src="@item.MediaUrl" alt="Blog list image">
+                            </div>
+                            <div class="col-sm-6">
+                                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+                                @if (item.BodyText.Length > 200)
+                                {
+                                    <p class="card-text">@Html.Raw(item.BodyText.Substring(0, 200))</p>
+                                }
+                                else
+                                {
+                                    <p class="card-text">@Html.Raw(item.BodyText)</p>
+                                }
+                                <div class="btn-group">
+                                    @Html.ActionLink("Read More", "Details", new { Slug = item.Slug }, new { @class = "btn btn-primary" })
+                                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                                    {
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-light" })
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-light" })
+                                    }
+                                </div>
+                            </div>
+                        }
+
+                        else
+                        {
+                            <div class="col">
+                                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+                                @if (item.BodyText.Length > 200)
+                                {
+                                    <p class="card-text">@Html.Raw(item.BodyText.Substring(0, 200))</p>
+                                }
+                                else
+                                {
+                                    <p class="card-text">@Html.Raw(item.BodyText)</p>
+                                }
+                                <div class="btn-group">
+                                    @Html.ActionLink("Read More", "Details", new { Slug = item.Slug }, new { @class = "btn btn-primary" })
+                                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                                    {
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-light" })
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-light" })
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    Posted on @Html.DisplayFor(modelItem => item.CreationDate) by
+                    @Html.DisplayFor(modelItem => item.PostAuthor.FullName)
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-lg-3 col-md-4">
+        @Html.Partial("_LoginPartial")
+        @Html.Partial("_BlogPartial")
+    </div>
+</div>
+
+
+
+<!-- Pagination -->
+@*<ul class="pagination justify-content-center mb-4">
+        <li class="page-item">
+            <a class="page-link" href="#">&larr; Older</a>
+        </li>
+        <li class="page-item disabled">
+            <a class="page-link" href="#">Newer &rarr;</a>
+        </li>
+    </ul>*@

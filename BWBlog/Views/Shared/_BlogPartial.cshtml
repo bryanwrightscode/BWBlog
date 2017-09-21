@@ -1,0 +1,9 @@
+﻿@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <div class="list-group">
+        @Html.ActionLink("Create", "Create", null, new { @class = "list-group-item list-group-item-action" })
+        @Html.ActionLink("Published", "Index", null, new { @class = "list-group-item list-group-item-action" })
+        @Html.ActionLink("Drafts", "Drafts", null, new { @class = "list-group-item list-group-item-action" })
+    </div>
+
+}

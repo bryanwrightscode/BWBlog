@@ -1,0 +1,685 @@
+﻿@{
+    ViewBag.Title = "JavaScript";
+    ViewBag.Lead = "Simple code solves complex problems";
+    ViewBag.Other = Html.ActionLink("Back to portfolio", "Index", null, new { @class = "btn btn-light" });
+}
+
+<div class="row justify-content-center" id="js-container">
+    <div class="col-lg-6">
+        <ul class="list-group">
+            <li class="list-group-item">
+                Alphabetize
+                <button type="button" class="btn btn-default float-right" data-toggle="modal" data-target="#Alphabetize">
+                    Launch
+                </button>
+            </li>
+            <li class="list-group-item">
+                Capitalize
+                <button type="button" class="btn btn-default float-right" data-toggle="modal" data-target="#Capitalize">
+                    Launch
+                </button>
+            </li>
+            <li class="list-group-item">
+                Factorial
+                <button type="button" class="btn btn-default float-right" data-toggle="modal" data-target="#Factorial">
+                    Launch
+                </button>
+            </li>
+            <li class="list-group-item">
+                Fizz Buzz
+                <button type="button" class="btn btn-default float-right" data-toggle="modal" data-target="#FizzBuzz">
+                    Launch
+                </button>
+            </li>
+            <li class="list-group-item">
+                Palindrome
+                <button type="button" class="btn btn-default float-right" data-toggle="modal" data-target="#Palindrome">
+                    Launch
+                </button>
+            </li>
+            <li class="list-group-item">
+                Statistics
+                <button type="button" class="btn btn-default float-right" data-toggle="modal" data-target="#Statistics">
+                    Launch
+                </button>
+            </li>
+            <li class="list-group-item">
+                Prime
+                <button type="button" class="btn btn-default float-right" data-toggle="modal" data-target="#Prime">
+                    Launch
+                </button>
+            </li>
+            <li class="list-group-item">
+                String Scrambler
+                <button type="button" class="btn btn-default float-right" data-toggle="modal" data-target="#StringScrambler">
+                    Launch
+                </button>
+            </li>
+            <li class="list-group-item">
+                Vowels
+                <button type="button" class="btn btn-default float-right" data-toggle="modal" data-target="#Vowels">
+                    Launch
+                </button>
+            </li>
+            <!-- Button trigger modal -->
+        </ul>
+    </div>
+</div>
+
+<!-- Content Column -->
+<div class="modal fade " id="Alphabetize" tabindex="-1" role="dialog" aria-labelledby="Alphabetize">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+                <h3>Alphabetize</h3>
+                <p>
+                    Alphabetize any word or words below! Note that you have to enter at least one letter, and that numbers and special
+                    characters will be removed.
+                </p>
+                <div class='form-group'>
+                    <label>String</label>
+                    <input type='text' class='form-control' id='alph-input' placeholder='enter string here'><br>
+                    <button type='submit' class='btn btn-default' id='alph-button' onclick='alphabetize()'>Submit</button>
+                </div>
+                <div id='alph-warnings'></div>
+                <div class='well' id='alph-outputDiv'></div>
+                <pre class="brush: js">function alphabetize() {
+    // Clear the warnings and results divs of any content and show it
+    $('#alph-outputDiv').hide();
+    $('#alph-warnings').empty();
+    $('#alph-outputDiv').empty();
+    var input = $('#alph-input').val();
+    if (!input.match(/[a-zA-Z]+/g)) {
+        console.log('Foo');
+        $('#alph-warnings').show();
+        createAlert('alph-warnings', 'danger', 'You didn\'t enter any letters.');
+    } else {
+        $('#alph-outputDiv').show();
+        if (input.match(/[A-Z]+/g)) {
+            $('#alph-warnings').show();
+            createAlert('alph-warnings', 'warning', 'You entered capital letters and they were converted to lowercase.');
+        }
+        if (input.match(/\s+/g)) {
+            $('#alph-warnings').show();
+            createAlert('alph-warnings', 'warning', 'You entered spaces and they were removed.');
+        }
+        if (input.match(/\d+/g)) {
+            $('#alph-warnings').show();
+            createAlert('alph-warnings', 'warning', 'You entered numbers and they were removed.');
+        }
+        if (input.match(/\`|\~|\!|\@@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:/g)) {
+            $('#alph-warnings').show();
+            createAlert('alph-warnings', 'warning', 'You entered special characters and they were removed.');
+        }
+        var lower = input.toLowerCase();
+        var clean = lower.replace(/[^a-zA-Z]|\s+/ig,'');
+        var arr = clean.split('');
+        var original = arr.join();  // Because the sort function is an in-place algorithm, the original order can only be compared if stored in a new string.
+        var sort = arr.sort();
+        var sorted = sort.join();
+        if (original === sorted) {
+            createAlert('alph-warnings', 'success', 'You entered alphabetized letters!');
+        }
+        $('#alph-outputDiv').append('&ltp&gt' + sort + '&ltp&gt');
+    }
+}</pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* Modal starts here *@
+<div class="modal fade" id="Capitalize" tabindex="-1" role="dialog" aria-labelledby="Capitalize">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+                @* CAPITALIZE DOES NOT WORK *@
+                <h3>Capitalize</h3>
+                <p>All words from your entry will be capitalized instantly&#33</p>
+                <div class='form-group'>
+                    <input type='text' class='form-control' id='cap-input' placeholder='to kill a mocking bird'><br>
+                    <div id='cap-optionsDiv'>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" value="" id='cap-option'>
+                                Don't capitalize the minor words unless it is the first word. (the, in, of, a, an, and)
+                            </label>
+                        </div>
+                    </div>
+                    <button type='submit' class='btn btn-default' id='cap-submit' onclick='capitalize()'>Submit</button>
+                    <button type="button" class="btn btn-link" id='cap-options' onclick='options()'>More Options</button>
+                </div>
+                <div id='cap-alerts'></div>
+                <div class='well' id='cap-results'></div>
+                <pre class="brush: js">function capitalize() {
+    $('#cap-results').hide();
+    $('#cap-results').empty();
+    $('#cap-alerts').empty();
+    var input = $('#cap-input').val();
+    if (!input.match(/[a-zA-Z]+/g)) {
+        $('#cap-alerts').append('&lt;div&gt; class="alert alert-danger alert-dismissible" role="alert"&gt;&lt;button&gt; type="button" class="close" data-dismiss="alert" aria-label="Close"&gt;&lt;span aria-hidden="true"&gt;&times;&lt;/span&gt;&lt;/button&gt;&lt;strong&gt;Oh snap!&lt;/strong&gt; You didn\'t enter any letters.&lt;/div&gt;');
+    } else {
+        if ($('#cap-option').is(':checked')) {
+            var repl = input.replace(/\b[a-z]/g, function(a){return a.toUpperCase()});
+            repl = repl.replace(/(\bThe\b|\bIn\b|\bOf\b|\bA\b|\bAn\b|\bAnd\b)/g, function(a){return a.toLowerCase()});
+            repl = repl.replace(repl[0], repl[0].toUpperCase());
+            $('#cap-results').append('&lt;h4&gt;' + repl + '&lt;/h4&gt;');
+            $('#cap-results').show();
+        } else {
+            var repl = input.replace(/\b[a-z]/g, function(a){return a.toUpperCase()});
+            $('#cap-results').append('&lt;h4>' + repl + '&lt;/h4&gt;');
+            $('#cap-results').show();
+        }
+    }
+}
+
+function options() {
+    $('#cap-optionsDiv').stop().toggle('fast');
+}</pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* Modal ends here *@
+@* Modal starts here *@
+<div class="modal fade" id="Factorial" tabindex="-1" role="dialog" aria-labelledby="Factorial">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+                <h3>Factorial</h3>
+                <p>Enter a positive integer to find its factorial, the product of an integer and all the integers below it.</p>
+                <div class='form-group'>
+                    <label>Number</label>
+                    <input type="number" id='fact-number'>
+                    <button type="submit" class="btn btn-primary" onclick="factRun()">Submit</button>
+                </div>
+                <div id="fact-fail"></div>
+                <div id="fact-success"></div>
+                <pre class="brush: js">/* 
+References: 
+For explanation of recursive function see https://stackoverflow.com/questions/4438131/factorial-of-a-number
+For mathetmatical proof that 0! = 1 see https://www.zero-factorial.com/whatis.html
+*/
+
+function factRun() {
+    $('#fact-fail').empty().hide();
+    $('#fact-success').empty().hide();
+    var number = document.getElementById('fact-number').value;
+    if (number % 1 != 0) {
+        createAlert('fact-fail', 'danger', 'You must enter a whole number.');
+        $('#fact-fail').show();
+    }
+    else if (number < 0) {
+        createAlert('fact-fail', 'danger', 'You must enter a number greater than 0.');
+        $('#fact-fail').show();
+    }
+    else {
+        var result = factorial(parseInt(number, 10));
+        if (isFinite(result) == false)
+        {
+            createAlert('fact-fail', 'warning', 'Try entering a smaller number.');
+            $('#fact-fail').show();
+        }
+        console.log(typeof (result));
+        document.getElementById('fact-success').innerHTML = result;    //Print out result in the HTML
+        document.getElementById('fact-success').style.display = 'block';
+    }
+}
+function factorial(number) {
+    if (number == 0) {
+        return 1;
+    }
+    return number * factorial(number-1);
+}</pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* Modal ends here *@
+@* Modal starts here *@
+<div class="modal fade" id="FizzBuzz" tabindex="-1" role="dialog" aria-labelledby="FizzBuzz">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+                <h3>Fizz Buzz</h3>
+                <p>Multiples of Number 1 will 'fizz', and multiples of Number 2 will 'buzz.' Try it out!</p>
+                <div class="form-group">
+                    <label>Number 1:</label>
+                    <input type="number" class="form-control" id="fizz-numOne" placeholder="Enter a number between 1 and 100"><br>
+                    <label>Number 2:</label>
+                    <input type="number" class="form-control" id="fizz-numTwo" placeholder="Enter another number between 1 and 100"><br>
+                    <button type="submit" class="btn btn-primary" onclick='fizzBuzz()'>Submit</button>
+                </div>
+                <div id='fizz-numList'></div>
+                <div id="fizz-message"></div>
+                <pre class="brush: js">/*
+Write a program that accepts two numbers between 1 and 100 from the user. The program
+then iterates through all numbers from 1 to 100, printing numbers in ascending order to the
+screen. For each number that is a multiple of the first number input by the user, print "Fizz"
+instead of the number. For each number that is a multiple of the second number input by
+the user, print "Buzz" instead of the number. For numbers that are multiples of both
+numbers, print "FizzBuzz" instead of the number.
+*/
+
+/*  Use JQuery instead of JS DOM methods
+    Use .Hide and .Show etc
+*/
+
+function fizzBuzz() {
+
+    $('#fizz-message').empty().hide();
+    $('#fizz-numList').empty().hide();
+    var numOne = $('#fizz-numOne').val();
+    var numTwo = $('#fizz-numTwo').val();
+    if (numOne < 1 ||
+        numOne > 100 ||
+        numTwo < 1 ||
+        numTwo > 100) {
+        $('#fizz-message').show();
+        createAlert('fizz-message', 'danger', 'You must enter numbers between 1 and 100');
+    }
+    else {
+        $('#fizz-numList').show();
+        console.log(numOne + 'and ' + numTwo);
+        for (i = 1; i < 101; i++) {
+            if (i % numOne == 0 && i % numTwo != 0) {
+                createParagraph('fizz-numList', 'fizz', 'Fizz');
+            }
+            else if (i % numTwo == 0 && i % numOne != 0) {
+                createParagraph('fizz-numList', 'buzz', 'Buzz');
+            }
+            else if (i % numOne == 0 && i % numTwo == 0) {
+                createParagraph('fizz-numList', 'fizzBuzz', 'FizzBuzz');
+            }
+            else {
+                createParagraph('fizz-numList', '', i);
+            }
+        }
+    }
+}</pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* Modal ends here *@
+@* Modal starts here *@
+<div class="modal fade" id="Palindrome" tabindex="-1" role="dialog" aria-labelledby="Palindrome">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+                <h3>Palindrome</h3>
+                <p>Find out if a word is a palindrome. Does it read the same backward as forward (e.g., 'radar')? Numbers and special characters will be ignored.</p>
+                <div class="form-group">
+                    <label>Word</label>
+                    <input type="text" id="pal-wordInput" placeholder="Enter word">
+                    <button type="button" class="btn btn-primary" onclick='palindrome()'>Submit</button>
+                </div>
+                <div class="alert alert-success" role="alert" id='pal-messageYes' style='display: none;'></div>
+                <div class="alert alert-danger" role="alert" id='pal-messageNo' style='display: none;'></div>
+                <pre class="brush: js">/*
+Write a program that determines whether a word is a Palindrome (the same backward as it
+is forward – “radar” for example). Display the result to the user.
+*/
+function palindrome() {
+    document.getElementById('pal-messageYes').style.display = 'none';
+    document.getElementById('pal-messageNo').style.display = 'none';
+    var wordInput = document.getElementById('pal-wordInput').value;
+    var wordCap = wordInput.toUpperCase();
+    var wordClean = wordCap.replace(/[^a-zA-Z]|\s+/ig,'');
+    var wordArr = wordClean.split('');
+    var wordRevArr = wordArr.reverse();
+    var wordRev = wordRevArr.join('');
+    if (wordClean === wordRev) {
+        var succPar = document.createElement('p');
+        var succNode = document.createTextNode('Congratulations, ' + '"' + wordInput + '"' + ' is a palindrome!');
+        succPar.appendChild(succNode);
+        var succMessage = document.getElementById('pal-messageYes');
+        succMessage.appendChild(succPar);
+        document.getElementById('pal-messageYes').style.display = 'block';
+    } else {
+        var failPar = document.createElement('p');
+        var failNode = document.createTextNode('Sorry, ' + '"' + wordInput + '"' + ' is not a palindrome.');
+        failPar.appendChild(failNode);
+        var failMessage = document.getElementById('pal-messageNo');
+        failMessage.appendChild(failPar);
+        document.getElementById('pal-messageNo').style.display = 'block';
+    }
+}</pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* Modal ends here *@
+@* Modal starts here *@
+<div class="modal fade" id="Statistics" tabindex="-1" role="dialog" aria-labelledby="Statistics">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+                <!-- FRONTEND DESCRIPTIONS FOR USER -->
+                <h3>Statistics</h3>
+                <p>Find out some statistics based on a series of numbers. No math required! This program finds the minimum, maximum, mean, sum, and product so you don't have to.</p>
+                <p><strong>Requirements:</strong></p>
+                <ol>
+                    <li>You must enter at least 5 numbers.</li>
+                    <li>Only numbers are allowed; no letters or puncuation.</li>
+                    <li>Separate each number with a comma.</li>
+                </ol>
+                <!-- INPUT ENTERED BY USER -->
+                <div class='form-group'>
+                    <label>Numbers</label>
+                    <!-- Number seriers entered here -->
+                    <input type="text" id='stat-numbers' placeholder='1,2,3,4,5'>
+                    <p>Make sure there is not a comma after the last number.</p>
+                    <!-- Clicking this runs the JavaScript function -->
+                    <button type="submit" class="btn btn-primary btn-sm" onclick="statistics()">Submit</button>
+                </div>
+                <!-- ERROR MESSAGES DISPLAY -->
+                <div id="stat-message"></div>
+                <!-- RESULTS DISPLAY -->
+                <table class='table' id='stat-results'>
+                    <thead>
+                        <tr>
+                            <th>Minimum</th>
+                            <th>Maximum</th>
+                            <th>Mean</th>
+                            <th>Sum</th>
+                            <th>Product</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id='stat-min'></td>
+                            <td id='stat-max'></td>
+                            <td id='stat-mean'></td>
+                            <td id='stat-sum'></td>
+                            <td id='stat-product'></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pre class="brush: js">function statistics() {
+    $('#stat-message').empty().hide();
+    $('#stat-results').hide();
+    $('#stat-results tbody td').empty();
+    // the value entered in the 'numbers' element ID is now the value for the numbers variable.
+    var Str = document.getElementById('stat-numbers').value;
+    // separate the string with commas into an array
+    var numbers = Str.split(',')
+    if (numbers.length < 5) {	// If the user supplied at least 5 numbers
+        createAlert('stat-message', 'danger', 'You did not enter at least 5 numbers.');
+        $('#stat-message').show();
+    } else if (/^[0-9\-\s\.]+(,[0-9\-\s\.]+)*$/.test(Str)) {	// Regex test to confirm only numbers and commas. Accepts negative numbers and whitespace between values
+        // iterate through each key to clean the data and run calcs on it.
+        for (i = 0;i < numbers.length; i++) {
+        //each key has white space removed from it
+            numbers[i] = parseInt(numbers[i].trim());
+        }
+        // new variable sorts array ascending and is assigned value of lowest key
+        var min = numbers.sort(function(a, b){return a - b});
+        min = min[0];
+        // new variable sorts array descending and is assigned value of lowest key
+        var max = numbers.sort(function(a, b){return b - a});
+        max = max[0];
+        var sum = 0;
+        var product = 1;
+        // iterates through array for sum and product
+        for (i = 0; i < numbers.length; i++) {
+            sum = sum + numbers[i];
+            product = product * numbers[i];
+            }
+        // new variable finds the mean
+        var mean = sum / numbers.length;
+        document.getElementById('stat-min').innerHTML = min;
+        document.getElementById('stat-max').innerHTML = max;
+        document.getElementById('stat-mean').innerHTML = mean;
+        document.getElementById('stat-sum').innerHTML = sum;
+        document.getElementById('stat-product').innerHTML = product;
+        $('#stat-results').show();
+    } else {    // If the regex test above failed write approp. error message.
+        createAlert('stat-message', 'danger', 'You entered punctuation or letters.');
+        $('#stat-message').show();
+    }
+}</pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* Modal ends here *@
+@* Modal starts here *@
+<div class="modal fade" id="Prime" tabindex="-1" role="dialog" aria-labelledby="Prime">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+                <h3>Prime</h3>
+                <p>Enter a number to find out if it is prime.</p>
+                <div class='form-group'>
+                    <input type='number' class='form-control' id='prime-input' placeholder='Number'><br>
+                    <button type='submit' class='btn btn-default' id='prime-submit' onclick='prime()'>Submit</button>
+                </div>
+                <div id='prime-alerts'></div>
+                <div class='well' id='prime-results'></div>
+                <pre class="brush: js">function prime() {
+    $('#prime-alerts').empty();
+    $('#prime-results').empty();
+    var input = $('#prime-input').val();
+    if (!input.match(/^-?\d\d*$/g)) {
+        $('#prime-results').hide(); //If previous attempt produced results
+        $('#prime-alerts').append('&lt;div class="alert alert-danger alert-dismissible" role="alert"&gt;&lt;button type="button" class="close" data-dismiss="alert" aria-label="Close"&gt;&lt;span aria-hidden="true"&gt;&times;&lt;/span&gt;&lt;/button&gt;&lt;strong&gt;Oh snap! &lt;/strong&gt;'+ input + ' is not a natural number.&lt;/div&gt;');
+        if (input &lt;= 1 && input.match(/^-?.?\..*$/g)) {
+            $('#prime-alerts').append('&lt;div class="alert alert-danger alert-dismissible" role="alert"&gt;&lt;button type="button" class="close" data-dismiss="alert" aria-label="Close"&gt;&lt;span aria-hidden="true"&gt;&times;&lt;/span&gt;&lt;/button&gt;&lt;strong&gt;Oh snap! &lt;/strong&gt;' + input+' is not greater than 1.&lt;/div&gt;');
+        }
+    } else {
+        if (input &lt;= 1) {
+            $('#prime-results').hide(); //If previous attempt produced results
+            $('#prime-alerts').append('&lt;div class="alert alert-danger alert-dismissible" role="alert"&gt;&lt;button type="button" class="close" data-dismiss="alert" aria-label="Close"&gt;&lt;span aria-hidden="true"&gt;&times;&lt;/span&gt;&lt;/button&gt;&lt;strong&gt;Oh snap! &lt;/strong&gt;' + input + ' is not greater than 1.&lt;/div&gt;');
+        } else {
+            var nonFactors = [];
+            var factors = [];
+            for (i=2; i&lt;input; i++) {
+                               if (input % i != =0) {
+                               nonFactors.push(i);
+                               }
+                               if (input % i= = =0) {
+                               factors.push(i);
+                               }
+                               }
+                               if (factors.length= = =0) {
+                               $('#prime-results').hide();
+                               $('#prime-alerts').append('&lt;div class="alert alert-success alert-dismissible" role="alert"&gt;&lt;button type="button" class="close" data-dismiss="alert" aria-label="Close"&gt;&lt;span aria-hidden="true"&gt;&times;&lt;/span&gt;&lt;/button&gt;&lt;strong&gt;Congrats! &lt;/strong&gt;' + input + ' is prime.&lt;/div&gt;');
+            }
+            if (factors.length !== 0) {
+                $('#prime-alerts').append('&lt;div class="alert alert-warning alert-dismissible" role="alert"&gt;&lt;button type="button" class="close" data-dismiss="alert" aria-label="Close"&gt;&lt;span aria-hidden="true"&gt;&times;&lt;/span&gt;&lt;/button&gt;&lt;strong&gt;Sorry. &lt;/strong&gt;' + input + ' is not prime.&lt;/div&gt;');
+                $('#prime-results').append('&lt;p&gt;' + input + ' is divisible by:&lt;/p&gt;' + '&lt;p&gt;' + factors + '&lt;/p&gt;');
+                $('#prime-results').show();
+            }
+        }
+    }
+}
+
+
+
+</pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* Modal ends here *@
+@* Modal starts here *@
+<div class="modal fade" id="StringScrambler" tabindex="-1" role="dialog" aria-labelledby="StringScrambler">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+                <h3>String Scrambler</h3>
+                <div class='form-group'>
+                    <label>String</label>
+                    <input type='text' class='form-control' id='string-inputStr' placeholder='enter string here'><br>
+                    <button type='submit' class='btn btn-default' id='string-button' onclick='stringRun()'>Submit</button>
+                </div>
+                <div id="scram-alerts"></div>
+                <div class='well' id='string-outputDiv'>
+                    <ul id='string-comboList'></ul>
+                </div>
+                <p><em>References:</em></p>
+                <p>Code is heavily based on <a href='https://codereview.stackexchange.com/questions/7001/generating-all-combinations-of-an-array'>Wayne Burkett's entry at Stackexchange.com</a></p>
+                <pre class="brush: js">// Write a JavaScript function that generates all combinations of a string ex) pie to p, pi, pe, i, ie, e
+
+/*
+This functions works by repeatedly modifying a user input string until 1 of 2 conditions is met. The string is 
+modified in two ways on each recursion, leading to two new active strings each time the function repeats. The
+two ways the input string is modified are transferring the [0] key or removing without transferring. The function 
+runs until either both the active and original strings are null, or just the original string is null. If 
+both are null, the function ends. If just the original string is null (empty), then that string is added to an
+array. The result of each scenario is added the the output array, a, and it is finally returned. Since there is 
+only one combination of events that results in both strings being empty, the function runs until all possible cominations
+are created.
+
+Possible improvements:
+The combinations function treats duplicate characters in user input the same as different characters. It could modify the string
+to remove all duplicate characters so the results don't include a combination with two of the same characters.
+
+References:
+Code is heavily based on Wayne Burkett's entry at Stackexchange.com.
+[https://codereview.stackexchange.com/questions/7001/generating-all-combinations-of-an-array]
+*/
+
+function combinations(str) {
+    function fn(active, rest, a) {
+        if (!active && !rest)
+            return;
+        if (!rest) {
+           a.push(active);
+        } else {                                        // each key in string is removed or removed and added until nothing is left
+            fn(active + rest[0], rest.slice(1), a);     // adds first key to active string and removes from rest string
+            fn(active, rest.slice(1), a);               // only removes first key from rest string
+        }
+        return a;
+    }
+    return fn("", str, []);
+}
+
+function stringRun() {
+    $('#string-comboList').empty();                            // clears the contents of the previous results (if not first time).
+    $('.well').show();                                  // changes the display of the results div from hidden (if first time).
+    var inputStr = $('#string-inputStr').val();                // assigns 'inputStr' variable the value of the user input contents.
+    var results = combinations(inputStr);               // assigns 'results' variable the value of the combinations function output.
+    for (i=0; i&lt;results.length; i++) {
+                                console.log(results[i]);
+                                $("#string-comboList").append('&lt;li&gt;' + results[i] + '&lt;/li&gt;');
+    }
+}</pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* Modal ends here *@
+@* Modal starts here *@
+<div class="modal fade" id="Vowels" tabindex="-1" role="dialog" aria-labelledby="Vowels">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+                <h3>Vowels</h3>
+                <p>Enter a string and see how many vowels it has and show each vowel.</p>
+                <div class='form-group'>
+                    <input type='text' class='form-control' id='vow-input' placeholder='Lorum ipsum dolor sit amet.'><br>
+                    <button type='submit' class='btn btn-default' id='vow-submit' onclick='vowels()'>Submit</button>
+                </div>
+                <div id='vow-alerts'></div>
+                <div class='well' id='vow-results'></div>
+                <pre class="brush: js">function vowels() {
+    $('#vow-alerts').empty();
+    $('#vow-results').empty();
+    var input = $('#vow-input').val();
+    if (!input.match(/[a-z]/ig)) {
+        $('#vow-results').hide(); //If previous attempt produced results
+        $('#vow-alerts').append('&lt;div class="alert alert-danger alert-dismissible" role="alert"&gt;&lt;button type="button" class="close" data-dismiss="alert" aria-label="Close"&gt;&lt;span aria-hidden="true"&gt;&times;&lt;/span&gt;&lt;/button&gt;&lt;strong&gt;Oh snap! &lt;/strong&gt; You didn&#39t enter any letters.&lt;/div&gt;');
+    } else {
+        if (!input.match(/[a|e|i|o|u]/ig)) {
+            $('#vow-alerts').append('&lt;div class="alert alert-warning alert-dismissible" role="alert"&gt;&lt;button type="button" class="close" data-dismiss="alert" aria-label="Close"&gt;&lt;span aria-hidden="true"&gt;&times;&lt;/span&gt;&lt;/button&gt;Your entry didn&#39t include any vowels.&lt;/div&gt;');
+        }
+        input = input.toLowerCase();
+        var vowels = [];
+        for (i=0; i&lt;input.length; i++) {
+                                  var current=input[i];
+                                  if (current.match(/[a|e|i|o|u]/ig)) {
+                vowels.push(current);
+            }
+        }
+        var count = vowels.length;
+        $('#vow-results').append('&lt;p&gt;' + vowels +'&lt;/p&gt;');
+        $('#vow-results').append('&lt;p&gt;&lt;strong&gt;Total: &lt;/strong&gt;' + count + '&lt;/p&gt;');
+        $('#vow-results').show();
+    }
+}</pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* Modal ends here *@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jsscripts")
+    <script>
+        SyntaxHighlighter.all();
+    </script>
+}

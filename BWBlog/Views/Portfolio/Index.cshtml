@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Portfolio";
+    ViewBag.Lead = "See what I'm up to";
+    ViewBag.Other = null;
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+            <img class="card-img-top" src="~/Assets/images/jsscreenshot.png" alt="js-thumbnail" draggable="false">
+            <div class="card-body">
+                <h4 class="card-title">
+                    <a href="@Url.Action("JS", "Portfolio")">JavaScript</a>
+                </h4>
+                <p class="card-text">Complex problems can be solved with simple algorithm scripts written solely in JavaScript. This series of lightweight web applications prove it.</p>
+                <button type="button" class="btn btn-outline-warning" title="Technology" data-container="body" data-toggle="popover" data-placement="top" data-content="I wrote JavaScript scripts with jQuery integration to power these apps. I wrote many regular expressions to improve data validation and user experience. Bootstrap alerts are used to display warning and danger alerts. My JS code is presented in a syntax highlighter below each program." data-trigger="hover">
+                    What's inside?
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+            <img class="card-img-top" src="~/Assets/images/blog.png" alt="blog-thumbnail" draggable="false">
+            <div class="card-body">
+                <h4 class="card-title">
+                    <a href="@Url.Action("Index", "Posts")">Blog</a>
+                </h4>
+                <p class="card-text">Read about my experiences learning and growing as a developer.</p>
+                <button type="button" class="btn btn-outline-warning" title="Technology" data-container="body" data-toggle="popover" data-placement="top" data-content="My blog uses the object-relational mapper called Entity Framework inside an ASP.NET MVC web application." data-trigger="hover">
+                    What's inside?
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

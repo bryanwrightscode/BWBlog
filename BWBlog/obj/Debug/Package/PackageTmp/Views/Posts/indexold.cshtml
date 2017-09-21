@@ -1,0 +1,52 @@
+﻿@model IEnumerable<BWBlog.Models.Post>
+
+@{
+    ViewBag.Title = "Blog";
+}
+
+<h2>Index</h2>
+
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PostAuthor.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostAuthor.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) <span>| </span>
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }) <span>| </span>
+            }
+            @Html.ActionLink("Details", "Details", new { Slug=item.Slug })
+        </td>
+    </tr>
+}
+
+</table>

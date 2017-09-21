@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
+    <title>@ViewBag.Title - Bryanwrightscode</title>
+    @Styles.Render("~/Content/css")
+    <link href="https://fonts.googleapis.com/css?family=Vibur" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/Assets/css/custom.css" />
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#51c6e7">
+    <meta name="apple-mobile-web-app-title" content="BW">
+    <meta name="application-name" content="BW">
+    <meta name="theme-color" content="#000000">
+
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light navbar-fixed-top navbar-expand-md">
+        <div class="container">
+            <a href="@Url.Action("Index", "Home")" class="navbar-brand">
+                Bryan Wright
+            </a>
+            <button class="navbar navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse navbar-light justify-content-end" id="navbarResponsive">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "About")" class="nav-link @ViewBag.activeAbout text-center">About</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a href="@Url.Action("Index", "Portfolio")" class="nav-link @ViewBag.activePortfolio text-center">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "Resume")" class="nav-link @ViewBag.activeResume text-center">R&#233sum&#233</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "Contact")" class="nav-link @ViewBag.activeContact text-center">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "Posts")" class="nav-link @ViewBag.activeBlog text-center">Blog</a>
+                    </li>
+                    @*@Html.Partial("_LoginPartial")*@
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    @if (ViewBag.HideBanner == null)
+    {
+        <div class="align-items-center my-banner">
+            <div class="col-12">
+                <h1 class="display-4">@ViewBag.Title</h1>
+                @if (ViewBag.Lead != null)
+                {
+                    <p class="lead">@ViewBag.Lead</p>
+                }
+                @if (ViewBag.Other != null)
+                {
+                    @ViewBag.Other
+                }
+            </div>
+        </div>
+    }
+
+    @if (ViewBag.activeHome == null)
+    {
+        <div class="body-content container-fluid" id="app">
+            @RenderBody()
+        </div>
+    }
+    else
+    {
+        <div class="body-content container-fluid home" id="app">
+            @RenderBody()
+        </div>
+    }
+
+    <footer class="py-5 bg-light" id="site-footer">
+        <div class="container">
+            <p class="text-muted text-center">Copyright &copy; Bryan Wright 2017</p>
+            <p class="text-muted text-center"><a href="https://www.linkedin.com/in/br7anwright/" target="_blank">LinkedIn</a></p>
+            <p class="text-muted text-center">SyntaxHighlighter v 3.0.83 &copy; 2004-2010 Alex Gorbatchev under the MIT License at alexgorbatchev.com. This website uses the <em>Modern Business</em> Bootstrap theme by Start Bootstrap at startboostrap.com. Favicon was generated using realfavicongenerator.com. Traffic Cone by Bakunetsu Kaito from the Noun Project.</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,54 @@
+﻿@model BWBlog.Models.EmailModel
+
+@{
+    ViewBag.Title = "Contact";
+    ViewBag.Lead = null;
+    ViewBag.Other = null;
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+        <div class="card" id="contact-card">
+            <div class="card-header">
+                <h3>Send me a Message</h3>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("Contact", "Contact", FormMethod.Post))
+            {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.FromName, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.FromName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.FromName)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.FromEmail, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.FromEmail, new
+               {
+                   @class = "form-control",
+                   placeholder = "example@email.com"
+               })
+                            @Html.ValidationMessageFor(m => m.FromEmail)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Body, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Body, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Body)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" class="btn btn-primary" value="Send" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
