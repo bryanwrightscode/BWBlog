@@ -17,11 +17,22 @@
         using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl })) {
             @Html.AntiForgeryToken()
             <div id="socialLoginList">
-                <p>
-                    @foreach (AuthenticationDescription p in loginProviders) {
-                        <button type="submit" class="btn btn-outline-primary" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
-                    }
-                </p>
+                
+                <div class="btn-group" role="group">
+                    <button id="externalLoginDrop" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Connect using...
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="externalLoginDrop">
+                        @foreach (AuthenticationDescription p in loginProviders)
+                        {
+                            <button type="submit" class="btn btn-link dropdowin-item" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
+                        }
+                    </div>
+                </div>
+
+
+                    
+
             </div>
         }
     }

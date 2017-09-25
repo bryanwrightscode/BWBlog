@@ -1,7 +1,7 @@
 ﻿@model BWBlog.Models.Post
 
 @{
-    ViewBag.Title = Model.Slug.Substring(0,8);
+    ViewBag.Title = Model.Slug.Substring(0, 8);
 }
 <div class="row justify-content-center">
     <div class="col-lg-7 col-md-10" id="blog-post-header">
@@ -46,8 +46,8 @@
                 else
                 {
                     <div class="btn-group">
-                        @Html.ActionLink("Register", "Register", "Account", null, new { @class = "btn btn-link" })
-                        @Html.ActionLink("Log in", "Login", "Account", null, new { @class = "btn btn-link" })
+                        @Html.ActionLink("Register", "Register", "Account", new { returnUrl = "/Blog/" + Model.Slug}, new { @class = "btn btn-link" })
+                        @Html.ActionLink("Log in", "Login", "Account", new { returnUrl = "/Blog/" + Model.Slug }, new { @class = "btn btn-link" })
                     </div>
                 }
             </div>

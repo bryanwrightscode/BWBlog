@@ -83,6 +83,7 @@ namespace BWBlog.Controllers
             //Explicit variable declaration, not implicit, var is of the Post type
             Post post = db.Posts.FirstOrDefault(p => p.Slug == Slug);
             post.Comments = post.Comments.OrderByDescending(p => p.CreationDate).ToList();
+            ViewBag.ReturnUrl = "/Blog/" + Slug;
             if (post == null)
             {
                 return HttpNotFound();

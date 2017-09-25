@@ -21,7 +21,7 @@
                                 <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
                                 @if (item.BodyText.Length > 200)
                                 {
-                                    <p class="card-text">@Html.Raw(item.BodyText.Substring(0, 200))</p>
+                                    <p class="card-text">@Html.Raw(item.BodyText.Substring(0, 200))<span>...</span></p>
                                 }
                                 else
                                 {
@@ -32,7 +32,7 @@
                                     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                                     {
                                         @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-light" })
-                                        <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#post-delete-toggle-@item.Id" aria-expanded="false" aria-controls="collapseExample">
+                                        <button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#post-delete-toggle-@item.Id" aria-expanded="false" aria-controls="collapseExample">
                                             Delete
                                         </button>
                                     }
@@ -46,7 +46,7 @@
                                 <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
                                 @if (item.BodyText.Length > 200)
                                 {
-                                    <p class="card-text">@Html.Raw(item.BodyText.Substring(0, 200))</p>
+                                    <p class="card-text">@Html.Raw(item.BodyText.Substring(0, 200))<span>...</span></p>
                                 }
                                 else
                                 {

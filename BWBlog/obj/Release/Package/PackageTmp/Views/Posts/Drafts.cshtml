@@ -21,7 +21,7 @@
                                 <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title) <span class="badge badge-danger">Draft</span></h5>
                                 @if (item.BodyText.Length > 200)
                                 {
-                                    <p class="card-text">@Html.Raw(item.BodyText.Substring(0, 200))</p>
+                                    <p class="card-text">@Html.Raw(item.BodyText.Substring(0, 200))<span>...</span></p>
                                 }
                                 else
                                 {
@@ -43,10 +43,10 @@
                         else
                         {
                             <div class="col">
-                                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+                                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title) <span class="badge badge-danger">Draft</span></h5>
                                 @if (item.BodyText.Length > 200)
                                 {
-                                    <p class="card-text">@Html.Raw(item.BodyText.Substring(0, 200))</p>
+                                    <p class="card-text">@Html.Raw(item.BodyText.Substring(0, 200))<span>...</span></p>
                                 }
                                 else
                                 {
@@ -81,7 +81,7 @@
             </div>
         }
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchStr = ViewBag.Search }))
+        @Html.PagedListPager(Model, page => Url.Action("Drafts", new { page, searchStr = ViewBag.Search }))
     </div>
     <div class="col-lg-3 col-md-4">
         @Html.Partial("_LoginPartial")
