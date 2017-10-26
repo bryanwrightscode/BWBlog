@@ -10,6 +10,7 @@ namespace BryanWright.Controllers
     public class PortfolioController : Controller
     {
         // GET: Portfolio
+        [RequireHttps]
         public ActionResult Index()
         {
             ViewBag.activePortfolio = "active";

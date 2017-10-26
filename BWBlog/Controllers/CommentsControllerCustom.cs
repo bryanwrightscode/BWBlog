@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace BWBlog.Controllers
 {
+    [RequireHttps]
     public class CommentsControllerCustom : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

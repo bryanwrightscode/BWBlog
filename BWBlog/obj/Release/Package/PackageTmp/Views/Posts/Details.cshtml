@@ -4,7 +4,7 @@
     ViewBag.Title = Model.Slug.Substring(0, 8);
 }
 <div class="row justify-content-center">
-    <div class="col-lg-7 col-md-10" id="blog-post-header">
+    <div class="col-lg-10" id="blog-post-header">
         <h1 class="mt-4 mb-3">
             @Html.DisplayFor(model => model.Title)
         </h1>
@@ -19,7 +19,7 @@
     </div>
 </div>
 <div class="row justify-content-center" id="blog-post-content">
-    <div class="col-lg-4 col-md-6">
+    <div class="col-lg-6">
         <img class="img-fluid rounded" src="@Model.MediaUrl" alt="Blog post image">
         <!-- Post Content -->
         <p>@Html.Raw(Model.BodyText)</p>
@@ -107,7 +107,7 @@
             }
         }
     </div>
-    <div class="col-lg-3 col-md-4">
+    <div class="col-lg-4">
         @Html.Partial("_LoginPartial")
         @Html.Partial("_BlogPartial")
     </div>

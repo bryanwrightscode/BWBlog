@@ -57,7 +57,7 @@ namespace BWBlog
                     Console.WriteLine(e.Message);
                     await Task.FromResult(0);
                 }
-            };
+            }
         }
     }
     public class PersonalEmail

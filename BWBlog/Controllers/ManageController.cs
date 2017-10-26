@@ -11,6 +11,7 @@ using BWBlog.Models;
 namespace BWBlog.Controllers
 {
     [Authorize]
+    [RequireHttps]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;

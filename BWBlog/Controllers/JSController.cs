@@ -9,6 +9,7 @@ namespace BryanWright.Controllers
     [RequireHttps]
     public class JSController : Controller
     {
+        [RequireHttps]
         // GET: JS
         public ActionResult Index()
         {

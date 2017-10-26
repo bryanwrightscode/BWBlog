@@ -10,6 +10,7 @@ namespace BryanWright.Controllers
     public class ResumeController : Controller
     {
         // GET: Resume
+        [RequireHttps]
         public ActionResult Index()
         {
             ViewBag.activeResume = "active";

@@ -421,6 +421,8 @@
     <Content Include="apple-touch-icon.png" />
     <Content Include="Assets\css\custom.css" />
     <Content Include="Assets\images\blog.png" />
+    <Content Include="Assets\images\boyle.png" />
+    <Content Include="Assets\images\bugtracker.jpeg" />
     <Content Include="Assets\images\bw.svg" />
     <Content Include="Assets\images\cone.png" />
     <Content Include="Assets\images\headshot.png" />

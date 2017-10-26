@@ -13,6 +13,7 @@ using BWBlog.Models;
 namespace BWBlog.Controllers
 {
     [Authorize]
+    [RequireHttps]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
